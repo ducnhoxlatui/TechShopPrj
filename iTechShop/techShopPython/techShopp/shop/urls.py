@@ -14,5 +14,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('login/',CustomLoginView.as_view(), name='login'),
     path('register/',RegisterFage.as_view(),name='register'),
+    path('shop/addcart', views.addcart, name='mua hang')
 
 ]

@@ -61,7 +61,7 @@
                         <label for="soluong">Số lượng đặt mua:</label>
                         <input type="number" class="auth-form__input" id="number" name="number" value="1" min="1">
                     </div>
-                    <button class="header__cart-view-cart btn btn--primary" style="height: 60px;width: 250px;font-size: 2.1rem;padding-top: 14px;" onclick="addCart({{product.pro_id}})">Mua ngay</button>
+                    <button class="header__cart-view-cart btn btn--primary" style="height: 60px;width: 250px;font-size: 2.1rem;padding-top: 14px;" onclick="addCart({{p.pro_id}})" >Mua ngay</button>
                 </div>
             </div>
         </div>
@@ -164,8 +164,10 @@
                 }
                 $.post('/shop/addcart',{'id':id,'num':num,'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
 
-                alert("bạn da mua duoc san pham")
+                alert("ban da mua duoc san pham")
                 });
+
+
 
             }
 
