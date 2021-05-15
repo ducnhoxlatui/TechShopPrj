@@ -3,7 +3,7 @@ from .models import *
 from django.http import HttpResponse
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import  FormView
-
+from django.template.loader import render_to_string
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -79,5 +79,37 @@ class RegisterFage(FormView):
             return redirect('index')
         return super(RegisterFage,self).get(*args,**kwargs)
 
+cart = {}
+
+def addcart(request):
+    if request.is_ajax():
+        id = request.POST.get('id')
+        num = request.POST.get('num')
+
+
+        proDetail = Product.objects.get(pro_id=id)
+        if id in cart.keys():
+            itemCart = {
+                'name': proDetail.pro_name,
+                'price': proDetail.pro_price,
+                'image': str(proDetail.pro_image),
+                'num': int(cart[id]['num']) + 1
+            }
+        else:
+            itemCart = {
+                'name': proDetail.pro_name,
+                'price': proDetail.pro_price,
+                'image': str(proDetail.pro_image),
+                'num': num
+            }
+        cart[id] = itemCart
+        request.session['cart'] = cart
+        cartInfo = request.session['cart']
+        html = render_to_string('shop/addcart.html', {'cart': cartInfo})
+    return HttpResponse(html)
+
+
+def shoppingcart(request):
+    return render(request,'shop/shoppingcart.html')
 
 

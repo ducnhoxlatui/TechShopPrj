@@ -1,8 +1,9 @@
 from django import urls
 from django.urls import path
 from django.urls import path
-from  .views import CustomLoginView,RegisterFage,indexx
+from  .views import *
 from django.contrib.auth.views import LogoutView
+
 
 
 
@@ -14,5 +15,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('login/',CustomLoginView.as_view(), name='login'),
     path('register/',RegisterFage.as_view(),name='register'),
-
+    path('shop/addcart', addcart, name='mua hang'),
+    path('shop/shoppingcart', shoppingcart, name='danh sach san pham trong gio hang')
 ]
