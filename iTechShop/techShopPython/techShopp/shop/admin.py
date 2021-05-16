@@ -8,14 +8,18 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('solddate','totmoney')
+    list_display = ('totmoney',)
+
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('cus_id','name')
+    search_fields = ('name',)
 
 
 admin.site.register(Product,ProductAdmin)  # đăng kí class lên trên trang admin để dễ quản lý
 admin.site.register(PGroup)
 admin.site.register(Brand)
 admin.site.register(Order,OrderAdmin)
-admin.site.register(Customer)
+admin.site.register(Customer,CustomerAdmin)
 admin.site.register(OderDetail)
 
 

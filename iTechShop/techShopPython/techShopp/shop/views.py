@@ -15,6 +15,8 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.db.models import Q
+from .forms import CustomerForm
 
 
 # Create your views here.
@@ -109,7 +111,42 @@ def addcart(request):
     return HttpResponse(html)
 
 
-def shoppingcart(request):
-    return render(request,'shop/shoppingcart.html')
+# def shoppingcart(request):
+#
+#     return render(request,'shop/shoppingcart.html',{'form':form})
+
+
+def customerpage(request):
+
+    total = 0;
+    carts = request.session['cart']
+    for key,value in carts.items():
+        total += int(value['price'])*int(value['num'])
+
+
+    if request.method =="POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            mobile = form.cleaned_data['mobile']
+            email = form.cleaned_data['email']
+            address = form.cleaned_data['address']
+            form = Customer(name=name,mobile=mobile,email=email,address=address)
+            form.save()
+
+    form = CustomerForm()
+
+    return  render(request,'shop/customerpage.html',{'total':total,'form':form})
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'shop/search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        Psearch_list = Product.objects.filter(
+            Q(pro_name__icontains=query) | Q(brand__name__icontains=query)
+        )
+        return Psearch_list
 
 

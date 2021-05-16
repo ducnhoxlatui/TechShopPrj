@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b087d71-104b-4969-832d-5d54c931cb8a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/templates/shop/addcart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/templates/shop/customerpage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/templates/shop/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/templates/shop/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/templates/shop/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/templates/shop/product-detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/shop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/techShopp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/iTechShop/techShopPython/techShopp/techShopp/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>

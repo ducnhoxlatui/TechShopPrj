@@ -29,21 +29,29 @@ class Product(models.Model):
 
 
 class Customer(models.Model):
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    pnumber = models.CharField(max_length=20)
-
+    cus_id = models.AutoField(primary_key='true')
+    name = models.CharField(max_length=255, null=False)
+    address = models.CharField(max_length=255, null=False)
+    mobile = models.CharField(max_length=20, null=False)
+    email = models.CharField(max_length=255, null=False)
     def __str__(self):
         return self.name
 
 
 class Order(models.Model):
-    cus = models.CharField(max_length=255)
-    solddate = models.DateTimeField(auto_now_add=True)
+    order_id = models.AutoField(primary_key='true')
+    user_id = models.IntegerField()
     totmoney = models.IntegerField(default=0)
-
+    def __str__(self):
+        return self.order_id.__str__()
 
 class OderDetail(models.Model):
-    oderID = models.CharField(max_length=255)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0)
+    detail_id = models.AutoField(primary_key='true')
+    order_id = models.IntegerField(null=False)
+    pro_id = models.IntegerField(null=False)
+    pro_price = models.IntegerField(null=False)
+    pro_image = models.IntegerField()
+    Quantity = models.IntegerField(null=False)
+    status = models.IntegerField()
+    def __str__(self):
+        return self.detail_id.__str__()

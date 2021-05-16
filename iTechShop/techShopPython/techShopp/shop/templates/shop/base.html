@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,173 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         .mySlides {display:none;}
-         <style>             .header {
+         <style>
+         .box
+{
+    width: 100%;
+    height: 40px;
+    background-color: black;
+
+}
+.form_background
+{
+    background-color: cadetblue;
+}
+.form__container
+{
+
+    display: flex;
+    margin: 0 100px;
+    background: rgb(219, 218, 218);
+}
+.cart_wrapper
+{
+    flex: 0 0 350px;
+    background-color:ghostwhite;
+    align-items: center;
+}
+.cart_wrapper .header__cart-list-item
+{
+    overflow:visible;
+    border-color: black;
+    border-style: solid;
+}
+.cart_wrapper .header__cart-item
+{
+    background-color: white;
+    padding: 10px;
+}
+.form__detail
+{
+    flex :2;
+    font-size: 1vw;
+
+
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 0px rgba(0,0,0, 0.1);
+    top: 3%;
+    left: 15%;
+}
+.form__heading
+{
+    padding-top: 20px;
+    color:  black;
+}
+.form__row
+{
+
+    height: 8vh;
+    width: 100%;
+    position: relative;
+}
+.form__row .form_input
+{
+    height: 70%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1.5px solid gray;
+}
+.form__row .form_input:focus ~ label,
+.form__row .form_input:valid ~ label
+{
+    transform: translateY(-20px);
+    font-size: 1vw;
+    color: black;
+    font-weight: bold;
+    transition: .3s;
+}
+.form__row .form_label
+{
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color:grey;
+    pointer-events: none;
+}
+.form__row .form_input_date ~ label
+{
+    font-size: 1vw;
+    color: black;
+}
+
+.form_label
+{
+    font-size: 1.2vw;
+    height: 5vh;
+    min-width: 15vw;
+}
+.radio__wrapper
+{
+    width: 100%;
+
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 15px ;
+    box-shadow: 0 0 5px rgba(0,0,0, 0.25);
+
+}
+.radio__mark
+{
+    display: none;
+}
+.radio__label
+{
+    padding: 2vh 4vw;
+    color: white;
+    background: black;
+    cursor: pointer;
+    transition: background 0.1s;
+    flex-grow: 1;
+}
+.radio__label:hover
+{
+    background-color: rgb(61, 61, 134);
+    font-size: 1.1vw;
+    transition: 0.3s;
+}
+.radio__label:not(:last-of-type)
+{
+    border-right: 1px solid white;
+}
+.radio__mark:checked + .radio__label
+{
+    background: lightblue;
+    color:  black;
+}
+.bill_content
+{
+    margin-top: 30px;
+}
+
+.submit_button_wrap
+{
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(90,red,green);
+    position: relative;
+    border-radius: 50px;
+}
+.submit_button
+{
+    width: 100%;
+    height: 100%;
+    border-radius:  50px;
+    background-color: black;
+    outline: none;
+    font-size: 1.5vw;
+    color: white;
+}
+.submit_button:hover
+{
+    background-color: lightblue;
+    font-size: 2vw;
+    transition: 0.3s;
+}
+
+         .header {
             height: var(--header-height);
             border: 1px solid rgb(226, 214, 214);
         }
@@ -906,6 +1073,8 @@
             }
         }
 
+
+
     </style>
 </head>
 <body>
@@ -930,20 +1099,23 @@
                         {% else %}
                         <a href="{% url 'login' %}">Đăng Nhập</a>
                         {% endif %}
-
                 </ul>
                 </li>
                 </ul>
             </nav>
             <!-- Header with search -->
             <div class="header-with-search">
-                <div class="header__logo">
-                    <img class="header__logo-img" src="https://cdn.worldvectorlogo.com/logos/itech.svg"
-                         alt="Itech logo vector">
-                </div>
+                <a href="{% url 'index'%}">
+                    <div class="header__logo">
+                        <img class="header__logo-img" src="https://cdn.worldvectorlogo.com/logos/itech.svg"
+                             alt="Itech logo vector">
+                    </div>
+                </a>
                 <div class="header__search">
                     <div class="header__search-input-wrap">
-                        <input type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm...">
+                        <form action="{% url 'search_results' %}" method="get">
+                            <input name='q' type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm...">
+                        </form>
                         <!-- Search trend -->
                         <div class="header__search-trend">
                             <h3 class="header__search-trend-heading">Xu hướng tìm kiếm</h3>
@@ -973,9 +1145,34 @@
                             <h4 class="header__cart-list-heading">Danh sách sản phẩm của bạn</h4>
                             <ul class="header__cart-list-item">
                                 <!-- Cart item -->
-                                <li class="header__cart-item"><a href="/shop/shoppingcart">Giỏ hàng</a>
+               {% for key,value in request.session.cart.items %}
 
-                                </li>
+                <li class="header__cart-item">
+                    <img src="https://xgear.vn/wp-content/uploads/2021/02/GF63-THIN-10SC-014VN.jpg" alt=""
+                         class="header__cart-img">
+                    <div class="header__cart-item-info">
+                        <div class="header__cart-item-head">
+                            <h5 class="header__cart-item-name">{{value.name}}</h5>
+                            <div class="header__cart-item-price-wrap">
+                                <span class="header__cart-item-mutiply">x</span>
+                                <span class="header__cart-item-qnt">{{value.num}}</span>
+
+
+
+                            </div>
+                        </div>
+                        <div class="header__cart-item-body">
+                                    <span class="header__cart-item-description">
+                                        Danh mục: LAPTOP
+                                    </span>
+                            <span class="header__cart-item-remove">Xóa</span>
+                        </div>
+                    </div>
+                </li>
+
+
+              {% endfor %}
+                       <span><strong>Tổng cộng: {{total}}</strong></span>
 
                             </ul>
                             <a href="#" class="header__cart-view-cart btn btn--primary">Thanh toán</a>
